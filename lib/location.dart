@@ -1,3 +1,4 @@
+import 'package:geoloc/database.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
@@ -42,6 +43,9 @@ class LocationData {
     //Set URL for redirecting to Google Maps
     locURL = "https://www.google.com/maps/search/?api=1&query=$lat,$lng";
     print(locURL);
+
+    DatabaseService()
+        .updateLocData(currentPosition.toString(), locURL, streetName, formattedDate);
   }
 
   //Launch the URL with map coordindates
