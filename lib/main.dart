@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),),
               SizedBox(height: 12,),
             
-            QrImage(data: "PeR:Cyril-9207585032",),
+            QrImage(data: "p-Ee-r:Cyril-9207585032",),
             flatButton("Add Public Places", Scan()),
             flatButton("Generate", Generate()),
 
