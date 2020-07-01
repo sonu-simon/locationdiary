@@ -7,7 +7,7 @@ class DatabaseService {
   Future updateLocData(String currentPosition, String locURL, String streetName,
       String now, String type) async {
     print("this shit ran");
-    return await locDataCollection.document(now + ' MS ' + type).setData({
+    return await locDataCollection.document(now + ' SP ' + type).setData({
       'currentPosition': currentPosition,
       'locURL': locURL,
       'streetName': streetName,
