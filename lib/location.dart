@@ -9,12 +9,15 @@ class LocationData {
   String streetName;
   bool status = false;
   DateTime now = DateTime.now();
-  var formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now());
+  String type;
+  var formattedDate =
+      DateFormat('yyyy-MM-dd – kk:mm:ss').format(DateTime.now());
 
-  getCurrentLocation() async {
+  getCurrentLocation(String type) async {
     final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
     double lat;
     double lng;
+    String typefn = type;
 
     //Get current location
     await geolocator
@@ -44,8 +47,8 @@ class LocationData {
     locURL = "https://www.google.com/maps/search/?api=1&query=$lat,$lng";
     print(locURL);
 
-    DatabaseService()
-        .updateLocData(currentPosition.toString(), locURL, streetName, formattedDate);
+    DatabaseService().updateLocData(
+        currentPosition.toString(), locURL, streetName, formattedDate, typefn);
   }
 
   //Launch the URL with map coordindates

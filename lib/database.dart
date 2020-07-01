@@ -1,19 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:geolocator/geolocator.dart';
-
 
 class DatabaseService {
   final CollectionReference locDataCollection =
       Firestore.instance.collection('locData');
 
   Future updateLocData(String currentPosition, String locURL, String streetName,
-      String now) async {
-        print("this shit ran");
-    return await locDataCollection.add({
+      String now, String type) async {
+    print("this shit ran");
+    return await locDataCollection.document(now + ' MS ' + type).setData({
       'currentPosition': currentPosition,
       'locURL': locURL,
       'streetName': streetName,
       'now': now,
+      'type': type,
     });
   }
 }
