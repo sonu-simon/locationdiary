@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geoloc/list.dart';
 import './location.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 import 'package:background_fetch/background_fetch.dart';
@@ -118,7 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
             
             QrImage(data: "p-Ee-r:Cyril-9207585032",),
             flatButton("Add Public Places", Scan()),
-            flatButton("Generate", Generate()),
+             flatButton("Check my Visits", Home()),
+            //flatButton("Generate", Generate()),
 
 
             RaisedButton(
