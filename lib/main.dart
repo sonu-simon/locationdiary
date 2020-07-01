@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import './location.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 import 'package:background_fetch/background_fetch.dart';
+import 'scan.dart';
+import 'generate.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 // This "Headless Task" is run when app is terminated.
 void backgroundFetchHeadlessTask(String taskId) async {
@@ -102,6 +105,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+
+
+             Text(
+              "Scan the text to add me to your todays contacts",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight:FontWeight.w600,
+                fontSize: 20
+              ),),
+              SizedBox(height: 12,),
+            
+            QrImage(data: "PeR:Cyril-9207585032",),
+            flatButton("Add Public Places", Scan()),
+            flatButton("Generate", Generate()),
+
+
             RaisedButton(
               child: Text("Get location"),
               onPressed: () {
@@ -122,4 +141,19 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+
+    Widget flatButton(String text,Widget widget){
+    return FlatButton(
+      child: Text(text),
+      onPressed: (){
+        Navigator.of(context).push(MaterialPageRoute(builder:(context)=>widget));
+      },
+      shape: RoundedRectangleBorder(
+        borderRadius:BorderRadius.circular(20.0),
+        side: BorderSide(color:Colors.green)
+      ),
+    );
+  }
+
 }
