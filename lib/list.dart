@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geoloc/login.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -58,6 +59,13 @@ class _ListPageState extends State<ListPage> {
 
                     return Card(
                         child: ListTile(
+                      trailing: IconButton(
+                          icon: Icon(Icons.location_on),
+                          onPressed: () {
+                            String mapsURL =
+                                snapshot.data[index].data["locURL"];
+                            launch(mapsURL);
+                          }),
                       subtitle: Text(snapshot.data[index].data["now"]),
                       title: Text(
                         snapshot.data[index].data["streetName"],

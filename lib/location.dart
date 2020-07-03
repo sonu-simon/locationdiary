@@ -1,7 +1,10 @@
 import 'package:geoloc/database.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
+
+import 'login.dart';
 
 class LocationData {
   Position currentPosition;
@@ -18,6 +21,15 @@ class LocationData {
     double lat;
     double lng;
     String typefn = type;
+    SharedPreferences sharedPreferences;
+
+    SharedPreferences.getInstance().then((SharedPreferences sp) {
+      sharedPreferences = sp;
+      final nameKey = 'name';
+      final phoneKey = 'phone';
+      name ?? sharedPreferences.getString(nameKey);
+      phone ?? sharedPreferences.getString(phoneKey);
+    });
 
     //Get current location
     await geolocator

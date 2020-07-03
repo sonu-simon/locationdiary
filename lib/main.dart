@@ -12,7 +12,7 @@ void backgroundFetchHeadlessTask(String taskId) async {
 
   LocationData headlessLocationData = LocationData();
   headlessLocationData.getCurrentLocation(
-      "backgroundFetchHeadless", "Cyril-9207585032");
+      "backgroundFetchHeadless", "$name - $phone");
 
   BackgroundFetch.finish(taskId);
 }
@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: First(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -79,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
       status = "bgfetch initiated";
     });
     LocationData locationData = LocationData();
-    locationData.getCurrentLocation("BackgroundFetch", "Cyril-9207585032");
+    locationData.getCurrentLocation("BackgroundFetch", "$name - $phone");
     setState(() {
       status = "bgfetch started successfully";
     });
@@ -116,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             QrImage(
-              data: "p-Ee-r:Cyril-9207585032",
+              data: "p-Ee-r:$name - $phone",
             ),
             flatButton("Add Public Places", Scan()),
             flatButton("Check my Visits", TabBarDemo()),
@@ -128,12 +129,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState(() {
                   LocationData locationData = LocationData();
                   locationData.getCurrentLocation(
-                      "onButtonPressed", "Cyril-9207585032");
+                      "onButtonPressed", "$name - $phone");
                   // print(locationData.streetName);
                 });
               },
             ),
-            Text(status),
+            //Text(status),
             // if (locationData.status == true)
             //   Text(locationData.streetName ?? "Waiting for data"),
             // Text(locationData.formattedDate),
