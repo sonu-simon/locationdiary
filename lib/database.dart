@@ -95,7 +95,25 @@ Future updateLocDataLatLong(String currentPosition, String locURL, String street
 
   Future updateLocDataPublicPlc(now,place)async {
     final CollectionReference locDataCollection2 =
-      Firestore.instance.collection('locData2');
+      Firestore.instance.collection('Cyril-9207585032');
+    return await locDataCollection2.document(now + ' ID ' + place).setData({
+      'now':now,
+      'public':place
+
+
+  });
+
+
+
+  }
+
+
+
+
+
+  Future updateLocDataPublicPlcAll(now,place,pls)async {
+    final CollectionReference locDataCollection2 =
+      Firestore.instance.collection('pls');
     return await locDataCollection2.document(now + ' ID ' + place).setData({
       'now':now,
       'public':place

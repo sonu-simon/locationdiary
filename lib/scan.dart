@@ -51,6 +51,7 @@ class _ScanState extends State<Scan> {
 
                   String place = scan.rawContent.toString().substring(3);
                    DatabaseService().updateLocDataPublicPlc(now,place);
+                    DatabaseService().updateLocDataPublicPlcAll(now,place,"place");
                 }
                 else if(scan.rawContent.toString().substring(0, 6)=="p-Ee-r")
                 {

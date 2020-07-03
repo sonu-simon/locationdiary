@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'list.dart';
 import 'listPerson.dart';
-
+import 'listplc.dart';
 
 
 class TabBarDemo extends StatelessWidget {
@@ -23,7 +23,7 @@ class TabBarDemo extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              Icon(Icons.directions_car),
+              Place(),
               ListPagePerson(),
               ListPage(),
             ],
