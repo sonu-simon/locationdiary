@@ -1,7 +1,7 @@
 
 import 'package:barcode_scan/barcode_scan.dart';
   
-
+import "login.dart";
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -50,19 +50,19 @@ class _ScanState extends State<Scan> {
 
 
                   String place = scan.rawContent.toString().substring(3);
-                   DatabaseService().updateLocDataPublicPlc(now,place);
+                //   DatabaseService().updateLocDataPublicPlc(now,place);
                     DatabaseService().updateLocDataPublicPlcAll(now,place,"place");
                 }
                 else if(scan.rawContent.toString().substring(0, 6)=="p-Ee-r")
                 {
 
-                   print("==============================");
+                  print("==============================");
                   print("met a person");
                   print("==============================");
 
                   String person = scan.rawContent.toString().substring(6);
                  LocationData locationData = LocationData();
-                  locationData.getCurrentLocationForPerson(person,"Cyril-9207585032");
+                  locationData.getCurrentLocationForPerson(person,"$name - $phone");
                   //locationData.getCurrentLocationForPerson(person);
                 }
   

@@ -14,12 +14,12 @@ class TabBarDemo extends StatelessWidget {
           appBar: AppBar(
             bottom: TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.directions_car)),
-                Tab(icon: Icon(Icons.directions_transit)),
-                Tab(icon: Icon(Icons.directions_bike)),
+                Tab(icon: Text("Place")),
+                Tab(icon: Text("People")),               
+                Tab(icon: Text("Auto-Record")),
               ],
             ),
-            title: Text('Tabs Demo'),
+            title: Text('My Contacts'),
           ),
           body: TabBarView(
             children: [
