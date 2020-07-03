@@ -12,10 +12,11 @@ class First extends StatefulWidget {
   _FirstState createState() => _FirstState();
 }
 
+String phone;
+String name;
+
 class _FirstState extends State<First> {
   dynamic value;
-  String phone;
-  String name;
 
   SharedPreferences sharedPreferences;
   @override

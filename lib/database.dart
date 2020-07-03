@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'login.dart';
 
 class DatabaseService {
-  String phone;
-  String name;
-
   final CollectionReference locDataCollection =
-      Firestore.instance.collection('Cyril-9207585032');
+      Firestore.instance.collection('$name - $phone');
 
   Future updateLocData(String currentPosition, String locURL, String streetName,
       String now, String type) async {
