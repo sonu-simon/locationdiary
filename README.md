@@ -1,4 +1,6 @@
-# geoloc
+# Covid Diary
+
+This app is built using Flutter.
 
 Record your location activities such as location data, people you met and places you've been. 
 On launch, the user registers their name and phone number which acts as a unique identifier for the user.
