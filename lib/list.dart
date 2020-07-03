@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -28,8 +29,12 @@ class _ListPageState extends State<ListPage> {
 
   Future getPosts()async {
     var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection("locData").getDocuments();
+    QuerySnapshot qn = await firestore.collection("Cyril-9207585032").getDocuments();
+    print("=========");
+    print(qn);
+    print('==========');
     return qn.documents;
+
   }
   
 navToDeet(DocumentSnapshot data){
@@ -44,7 +49,12 @@ navToDeet(DocumentSnapshot data){
         builder: (_,snapshot){
         if(snapshot.connectionState==ConnectionState.waiting)
         {
-          return Container(child:Text("waitoing"));
+          return Center(child:Column(
+            
+            mainAxisAlignment:MainAxisAlignment.center,
+            crossAxisAlignment:CrossAxisAlignment.center,
+            children:<Widget>[
+            CircularProgressIndicator()]));
         }
         else{
          
@@ -56,6 +66,7 @@ navToDeet(DocumentSnapshot data){
               
               return ListTile(title: Text(
                 snapshot.data[index].data["now"],
+                //"Value"
                 ),
                 onTap: (){
                   navToDeet(snapshot.data[index]);

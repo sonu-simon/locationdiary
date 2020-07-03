@@ -18,6 +18,27 @@ class DatabaseService {
 
 
 
+
+Future updateLocDataLatLong(String currentPosition, String locURL, String streetName,
+      String now, String type,String per) async {
+
+         final CollectionReference locDataCollection =
+      Firestore.instance.collection(currentPosition);
+    print("this shit ran");
+    return await locDataCollection.document(now + ' ID ' + type).setData({
+      'person':per,
+      'currentPosition': currentPosition,
+      'locURL': locURL,
+      'streetName': streetName,
+      'now': now,
+      'type': type,
+    });
+  }
+
+
+
+
+
   Future updateLocDataPer(String currentPosition, String locURL, String streetName,
       String now,String person) async {
     print("this shit ran");

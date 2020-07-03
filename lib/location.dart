@@ -13,7 +13,7 @@ class LocationData {
   var formattedDate =
       DateFormat('yyyy-MM-dd – kk:mm:ss').format(DateTime.now());
 
-  getCurrentLocation(String type) async {
+  getCurrentLocation(String type,String person) async {
     final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
     double lat;
     double lng;
@@ -49,6 +49,9 @@ class LocationData {
 
     DatabaseService().updateLocData(
         currentPosition.toString(), locURL, streetName, formattedDate, typefn);
+
+        DatabaseService().updateLocDataLatLong(
+        currentPosition.toString(), locURL, streetName, formattedDate, typefn,person);
   }
 
 
