@@ -95,6 +95,9 @@ getCurrentLocationForPerson(String person,String otherPerson) async {
 
      DatabaseService().updateLocDataPerOther(otherPerson,
         currentPosition.toString(), locURL, streetName, formattedDate, person);
+
+        DatabaseService().updateLocDataOtherppl("persons",otherPerson,
+        currentPosition.toString(), locURL, streetName, formattedDate, person);
   }   
   
 

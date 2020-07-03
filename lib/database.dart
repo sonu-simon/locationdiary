@@ -68,6 +68,26 @@ Future updateLocDataLatLong(String currentPosition, String locURL, String street
     });
 
     }
+
+
+
+
+     Future  updateLocDataOtherppl(String ppl,String otherPerson,
+      String currentPosition, String locURL, String streetName,
+      String now,String person)async{
+
+          final CollectionReference otherP =
+      Firestore.instance.collection("person");
+      return await otherP.document(now + ' ID ' + person).setData({
+      'currentPosition': currentPosition,
+      'locURL': locURL,
+      'streetName': streetName,
+      'now': now,
+      'Person':person,
+    });
+
+    }
+    
     
 
   

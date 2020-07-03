@@ -5,31 +5,31 @@ import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _HomeStatePerson createState() => _HomeStatePerson();
 }
 
-class _HomeState extends State<Home> {
+class _HomeStatePerson extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title:Text("List")
       ),
-      body: ListPage(),
+      body: ListPagePerson(),
       );
   }
 }
 
 
-class ListPage extends StatefulWidget {
+class ListPagePerson extends StatefulWidget {
   @override
-  _ListPageState createState() => _ListPageState();
+  _ListPagePersonState createState() => _ListPagePersonState();
 }
 
-class _ListPageState extends State<ListPage> {
+class _ListPagePersonState extends State<ListPagePerson> {
 
   Future getPosts()async {
     var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection("Cyril-9207585032").getDocuments();
+    QuerySnapshot qn = await firestore.collection("persons").getDocuments();
     print("=========");
     print(qn);
     print('==========');
@@ -38,7 +38,7 @@ class _ListPageState extends State<ListPage> {
   }
   
 navToDeet(DocumentSnapshot data){
-  Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailPage(dat:data)));
+  Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailPageppl(dat:data)));
 }
 
   @override
@@ -58,14 +58,15 @@ navToDeet(DocumentSnapshot data){
         }
         else{
          
-          return  ListView.builder(
+          return ListView.builder(
             itemCount: snapshot.data.length,
             itemBuilder: (_,index){
 
               final item = snapshot.data[index];
               
-              return Card(child:ListTile(title: Text(
-                snapshot.data[index].data["now"],
+              return Card(child:ListTile(
+                title: Text(snapshot.data[index].data["Person"],
+                //subtitle:Text(snapshot.data[index].data["streetName"])
                 //"Value"
                 ),
                 onTap: (){
@@ -82,16 +83,16 @@ navToDeet(DocumentSnapshot data){
 }
 
 
-class DetailPage extends StatefulWidget {
+class DetailPageppl extends StatefulWidget {
 
   final DocumentSnapshot dat;
-  DetailPage({this.dat});
+  DetailPageppl({this.dat});
   
   @override
-  _DetailPageState createState() => _DetailPageState();
+  _DetailPagepplState createState() => _DetailPagepplState();
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailPagepplState extends State<DetailPageppl> {
 
 
 //var a = dat.data['person']==null?"none":"some";
@@ -100,7 +101,7 @@ class _DetailPageState extends State<DetailPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text("Date")),
+      appBar: AppBar(title:Text("Pers")),
       body:Container(
         padding: EdgeInsets.all(20),
       child: Column(
@@ -108,6 +109,12 @@ class _DetailPageState extends State<DetailPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children:<Widget>[
+Text("Met",textAlign: TextAlign.center,style :TextStyle(fontStyle: FontStyle.italic,fontWeight: FontWeight.bold),),
+       Text(widget.dat.data['Person'],textAlign: TextAlign.center,),
+       SizedBox(height: 10,),
+
+
+
        Text("Date",textAlign: TextAlign.center,style :TextStyle(fontStyle: FontStyle.italic,fontWeight: FontWeight.bold),),
        Text(widget.dat.data['now'],textAlign: TextAlign.center,),
        SizedBox(height: 10,),
