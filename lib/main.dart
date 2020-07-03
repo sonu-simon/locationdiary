@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:geoloc/list.dart';
 import './location.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 import 'package:background_fetch/background_fetch.dart';
+import 'scan.dart';
+import 'tab.dart';
+import 'generate.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 // This "Headless Task" is run when app is terminated.
 void backgroundFetchHeadlessTask(String taskId) async {
   print("Headless task fn entered");
 
   LocationData headlessLocationData = LocationData();
-  headlessLocationData.getCurrentLocation("backgroundFetchHeadless");
+  headlessLocationData.getCurrentLocation("backgroundFetchHeadless","Cyril-9207585032");
 
   BackgroundFetch.finish(taskId);
 }
@@ -75,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
       status = "bgfetch initiated";
     });
     LocationData locationData = LocationData();
-    locationData.getCurrentLocation("BackgroundFetch");
+    locationData.getCurrentLocation("BackgroundFetch","Cyril-9207585032");
     setState(() {
       status = "bgfetch started successfully";
     });
@@ -102,12 +107,29 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+
+
+             Text(
+              "Scan the text to add me to your todays contacts",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight:FontWeight.w600,
+                fontSize: 20
+              ),),
+              SizedBox(height: 12,),
+            
+            QrImage(data: "p-Ee-r:Cyril-9207585032",),
+            flatButton("Add Public Places", Scan()),
+             flatButton("Check my Visits", TabBarDemo()),
+            //flatButton("Generate", Generate()),
+
+
             RaisedButton(
               child: Text("Get location"),
               onPressed: () {
                 setState(() {
                   LocationData locationData = LocationData();
-                  locationData.getCurrentLocation("onButtonPressed");
+                  locationData.getCurrentLocation("onButtonPressed","Cyril-9207585032");
                   // print(locationData.streetName);
                 });
               },
@@ -122,4 +144,19 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+
+    Widget flatButton(String text,Widget widget){
+    return FlatButton(
+      child: Text(text),
+      onPressed: (){
+        Navigator.of(context).push(MaterialPageRoute(builder:(context)=>widget));
+      },
+      shape: RoundedRectangleBorder(
+        borderRadius:BorderRadius.circular(20.0),
+        side: BorderSide(color:Colors.green)
+      ),
+    );
+  }
+
 }
