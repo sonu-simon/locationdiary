@@ -17,20 +17,20 @@ class DatabaseService {
     });
   }
 
-  Future updateLocDataLatLong(String currentPosition, String locURL,
-      String streetName, String now, String type, String per) async {
-    final CollectionReference locDataCollection =
-        Firestore.instance.collection(currentPosition);
-    print("this shit ran");
-    return await locDataCollection.document(now + ' ID ' + type).setData({
-      'person': per,
-      'currentPosition': currentPosition,
-      'locURL': locURL,
-      'streetName': streetName,
-      'now': now,
-      'type': type,
-    });
-  }
+  // Future updateLocDataLatLong(String currentPosition, String locURL,
+  //     String streetName, String now, String type, String per) async {
+  //   final CollectionReference locDataCollection =
+  //       Firestore.instance.collection(currentPosition);
+  //   print("this shit ran");
+  //   return await locDataCollection.document(now + ' ID ' + type).setData({
+  //     'person': per,
+  //     'currentPosition': currentPosition,
+  //     'locURL': locURL,
+  //     'streetName': streetName,
+  //     'now': now,
+  //     'type': type,
+  //   });
+  // }
 
   Future updateLocDataPer(String currentPosition, String locURL,
       String streetName, String now, String person) async {
@@ -64,7 +64,8 @@ class DatabaseService {
       String streetName,
       String now,
       String person) async {
-    final CollectionReference otherP = Firestore.instance.collection("person");
+    final CollectionReference otherP =
+        Firestore.instance.collection("person - $name");
     return await otherP.document(now + ' ID ' + person).setData({
       'currentPosition': currentPosition,
       'locURL': locURL,
@@ -76,7 +77,7 @@ class DatabaseService {
 
   Future updateLocDataPublicPlc(now, place) async {
     final CollectionReference locDataCollection2 =
-        Firestore.instance.collection('Cyril-9207585032');
+        Firestore.instance.collection('$name - $phone');
     return await locDataCollection2
         .document(now + ' ID ' + place)
         .setData({'now': now, 'public': place});
@@ -84,7 +85,7 @@ class DatabaseService {
 
   Future updateLocDataPublicPlcAll(now, place, pls) async {
     final CollectionReference locDataCollection2 =
-        Firestore.instance.collection('pls');
+        Firestore.instance.collection('plc - $name');
     return await locDataCollection2
         .document(now + ' ID ' + place)
         .setData({'now': now, 'public': place});

@@ -13,7 +13,7 @@ class LocationData {
   var formattedDate =
       DateFormat('yyyy-MM-dd – kk:mm:ss').format(DateTime.now());
 
-  getCurrentLocation(String type,String person) async {
+  getCurrentLocation(String type, String person) async {
     final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
     double lat;
     double lng;
@@ -50,12 +50,11 @@ class LocationData {
     DatabaseService().updateLocData(
         currentPosition.toString(), locURL, streetName, formattedDate, typefn);
 
-        DatabaseService().updateLocDataLatLong(
-        currentPosition.toString(), locURL, streetName, formattedDate, typefn,person);
+    // DatabaseService().updateLocDataLatLong(
+    // currentPosition.toString(), locURL, streetName, formattedDate, typefn,person);
   }
 
-
-getCurrentLocationForPerson(String person,String otherPerson) async {
+  getCurrentLocationForPerson(String person, String otherPerson) async {
     final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
     double lat;
     double lng;
@@ -92,19 +91,12 @@ getCurrentLocationForPerson(String person,String otherPerson) async {
     DatabaseService().updateLocDataPer(
         currentPosition.toString(), locURL, streetName, formattedDate, person);
 
-
-     DatabaseService().updateLocDataPerOther(otherPerson,
+    DatabaseService().updateLocDataPerOther(otherPerson,
         currentPosition.toString(), locURL, streetName, formattedDate, person);
 
-        DatabaseService().updateLocDataOtherppl("persons",otherPerson,
+    DatabaseService().updateLocDataOtherppl("persons", otherPerson,
         currentPosition.toString(), locURL, streetName, formattedDate, person);
-  }   
-  
-
-
-
-
-
+  }
 
   //Launch the URL with map coordindates
   locURLFn() {

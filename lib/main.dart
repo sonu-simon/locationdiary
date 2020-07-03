@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:geoloc/list.dart';
 import 'package:geoloc/login.dart';
 import './location.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
 import 'package:background_fetch/background_fetch.dart';
 import 'scan.dart';
 import 'tab.dart';
-import 'generate.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 // This "Headless Task" is run when app is terminated.
